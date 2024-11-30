@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Adivinhação</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffe4e1; /* Rosa claro */
+      color: #ff69b4; /* Rosa vibrante */
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff0f5; /* Fundo rosado */
+      border: 2px solid #ffc0cb; /* Borda rosa */
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 15px 0;
+    }
+
+    input[type="number"] {
+      font-size: 1rem;
+      padding: 10px;
+      width: 80%;
+      max-width: 200px;
+      border: 2px solid #ffb6c1; /* Rosa claro */
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: #fff;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #ff1493; /* Rosa mais forte */
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Jogo de Adivinhação</h1>
+    <p>Tente adivinhar o número entre 1 e 50!</p>
+    <input type="number" id="guess" placeholder="Digite seu palpite" min="1" max="50">
+    <br>
+    <button onclick="checkGuess()">Verificar</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // Gera um número aleatório entre 1 e 50
+    const secretNumber = Math.floor(Math.random() * 50) + 1;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById('guess').value);
+      const result = document.getElementById('result');
+
+      if (isNaN(guess) || guess < 1 || guess > 50) {
+        result.textContent = "Por favor, insira um número válido entre 1 e 50.";
+        result.style.color = "red";
+      } else if (guess < secretNumber) {
+        result.textContent = "Muito baixo! Tente novamente.";
+        result.style.color = "orange";
+      } else if (guess > secretNumber) {
+        result.textContent = "Muito alto! Tente novamente.";
+        result.style.color = "orange";
+      } else {
+        result.textContent = "Parabéns! Você acertou!";
+        result.style.color = "green";
+      }
+    }
+  </script>
+</body>
+</html>
